@@ -10,9 +10,9 @@
   <body>
 
   <?php
-// define variables and set to empty values
-$nameError = $emailError = $majorError = $housingError = $satisfactionError =  "";
-$name = $studentEmail = $major = $housing = $satisfaction = "";
+
+$nameError = $emailError = $majorError = $housingError = $satisfactionError = $emailListError = "";
+$name = $studentEmail = $major = $housing = $satisfaction = $emailList = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($_POST["name"])) {
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
   if (empty($_POST["studentEmail"])) {
-    $emailError = "Email is required";
+    $emailError = "Please enter your Email";
   } else {
     $studentEmail = $_POST["studentEmail"];
   }
@@ -40,42 +40,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
   if (empty($_POST["satisfaction"])) {
-    $satisfactionError = "Please select one";
+    $satisfactionError = "Select one for least satisfied and five for most satisfied";
   } else {
     $satisfaction = $_POST["satisfaction"];
   }
+
+  if (empty($_POST["emailList"])) {
+    $emailListError = "select one";
+  } else {
+    $emailList = $_POST["emailList"];
+  }
 }
+
+
+
+  
 ?>
 
     <div id="wrapper">
     <h1>Student Survey</h1>
     <div id="font">
 	<form method="post" action="">
-     <span class="error"> <?php echo $nameError;?></span>
-     <br>
+     
      <label for="name">Name: </label>
+     <span class="error"> <?php echo $nameError;?></span>
      <br>
      <input type="text" name="name" value="<?php echo $name;?>">
      <br>
      
-     <span class="error"> <?php echo $emailError;?></span>
-     <br>
+     
      <label for="studentEmail">Student Email:</label>
+     <span class="error"> <?php echo $emailError;?></span>
      <br>
      <input type="text" name="studentEmail" value="<?php echo $studentEmail;?>">
      <br>
      
-     <span class="error"> <?php echo $majorError;?></span>
-     <br>
+     
      <label for="major">Major:</label>
+     <span class="error"> <?php echo $majorError;?></span>
      <br>
      <input type="text" name="major" value="<?php echo $major;?>">
      <br><br>
      
      <label for="housing">Do you live on campus? </label>
-     </div>
-     <br>
      <span class="error"> <?php echo $housingError;?></span>
+     <br>
+     </div>
+     
      
      
      <input type="radio" name="housing" <?php if (isset($housing) && $housing== "Yes") echo "checked";?> value="Yes">
@@ -113,10 +124,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      <input type="radio" name="satisfaction" <?php if (isset($satisfaction) && $satisfaction== "5") echo "checked";?> value="5">
      <label for="5">5</label>
      <br><br>
+     
+     <div id="font">
+     <label for="emailList">Would you like to receive emails for housing recommendations?</label>
+     <span class="error"> <?php echo $emailListError;?></span>
+     </div>
+     
+     
+     
+     <input type="checkbox"  name="emailList"  <?php if (isset($emailList) && $emailList== "Yes") echo "checked";?> value="Yes">
+     <label for="emailList"> Yes</label>
+     <br>
+     <input type="checkbox"  name="emailList" <?php if (isset($emailList) && $emailList== "No") echo "checked";?> value="No">
+     <label for="emailList"> No</label>
+     <br><br>
 
 
-
+  
   <input type="submit" name="submit" value="submit">
+  <br>
+
+   <?php
+  
+    if(isset($_POST['submit'])){
+    echo "form submitted";
+ 
+}
+     
+   ?>
+
+  
     </form>
 </div>
   </body>

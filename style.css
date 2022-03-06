@@ -10,14 +10,14 @@ h1{
 #wrapper{
     background-color:white;
     width: 400px;
-    height: 600px;
+    height: 650px;
     border: 2px solid cadetblue;
 }
 input[type=text] {
     background-color: cadetblue;
     color: white;
     border-radius: 4px;
-    border: 1px solid white;
+    border: 1px solid cornflowerblue;
     height: 20px;
     width: 300px;
   }
@@ -30,6 +30,22 @@ input[type=text] {
 
   label{
       font-family: Arial, Helvetica, sans-serif;
+  }
+
+  input[type=submit]{
+      font-family: Arial, Helvetica, sans-serif;
+      background-color:darkcyan;
+      color: antiquewhite;
+      font-size: 20px;
+      padding: 10px;
+      border: none;
+     
+  }
+
+  .error{
+      font-weight: lighter;
+      color: red;
+      font-style: italic;
   }
 
  
